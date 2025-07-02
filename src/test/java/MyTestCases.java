@@ -24,9 +24,31 @@ public class MyTestCases {
 
         driver.navigate().to(SignupPage);
 
+        //Elements
         WebElement firstName = driver.findElement(By.xpath("//*[@id=\"AccountFrm_firstname\"]"));
+        WebElement lastName= driver.findElement(By.id("AccountFrm_lastname"));
+        WebElement email= driver.findElement(By.xpath("//input[@id='AccountFrm_email']"));
+        WebElement telephone= driver.findElement(By.xpath("//input[@id='AccountFrm_telephone']"));
+        WebElement fax= driver.findElement(By.xpath("//input[@id='AccountFrm_fax']"));
+        WebElement company= driver.findElement(By.xpath("//input[@id='AccountFrm_company']"));
+        WebElement address1= driver.findElement(By.xpath("//input[@id='AccountFrm_address1']"));
+        WebElement address2= driver.findElement(By.xpath("//input[@id='AccountFrm_address2']"));
+        WebElement city= driver.findElement(By.xpath("//input[@id='AccountFrm_city']"));
 
-        firstName.sendKeys("ahmad");
+        //Actions
+        firstName.sendKeys("Yazan");
+        lastName.sendKeys("Sarhan");
+        email.sendKeys("yazan@yahoo.com");
+        telephone.sendKeys("00962788997711");
+        fax.sendKeys("0011");
+        company.sendKeys("ABC");
+        address1.sendKeys("Amman");
+        address2.sendKeys("Airport St");
+        city.sendKeys("Amman");
+
+
+
+
         //Hello
     }
 }
