@@ -26,25 +26,24 @@ public class MyTestCases {
 
         //Elements
         WebElement firstName = driver.findElement(By.xpath("//*[@id=\"AccountFrm_firstname\"]"));
-        WebElement lastName= driver.findElement(By.id("AccountFrm_lastname"));
-        WebElement email= driver.findElement(By.xpath("//input[@id='AccountFrm_email']"));
-        WebElement telephone= driver.findElement(By.xpath("//input[@id='AccountFrm_telephone']"));
-        WebElement fax= driver.findElement(By.xpath("//input[@id='AccountFrm_fax']"));
-        WebElement company= driver.findElement(By.xpath("//input[@id='AccountFrm_company']"));
-        WebElement address1= driver.findElement(By.xpath("//input[@id='AccountFrm_address1']"));
-        WebElement address2= driver.findElement(By.xpath("//input[@id='AccountFrm_address2']"));
-        WebElement city= driver.findElement(By.xpath("//input[@id='AccountFrm_city']"));
-
-        //Actions
         firstName.sendKeys("Yazan");
+        WebElement lastName= driver.findElement(By.id("AccountFrm_lastname"));
         lastName.sendKeys("Sarhan");
+        WebElement email= driver.findElement(By.xpath("//input[@id='AccountFrm_email']"));
         email.sendKeys("yazan@yahoo.com");
+        WebElement telephone= driver.findElement(By.xpath("//input[@id='AccountFrm_telephone']"));
         telephone.sendKeys("00962788997711");
+        WebElement fax= driver.findElement(By.xpath("//input[@id='AccountFrm_fax']"));
         fax.sendKeys("0011");
+        WebElement company= driver.findElement(By.xpath("//input[@id='AccountFrm_company']"));
         company.sendKeys("ABC");
+        WebElement address1= driver.findElement(By.xpath("//input[@id='AccountFrm_address_1']"));
         address1.sendKeys("Amman");
+        WebElement address2= driver.findElement(By.xpath("//input[@id='AccountFrm_address_2']"));
         address2.sendKeys("Airport St");
+        WebElement city= driver.findElement(By.xpath("//input[@id='AccountFrm_city']"));
         city.sendKeys("Amman");
+
 
 
 
