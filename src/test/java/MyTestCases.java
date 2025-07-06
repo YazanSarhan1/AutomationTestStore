@@ -53,7 +53,7 @@ public class MyTestCases {
 
         String[] lastNames={"Sarhan","Assad","Khalil","Sultan","Hussein"};
         int randomIndexLastName = rand.nextInt(lastNames.length);
-        String randomLastName = firstNames[randomIndexLastName];
+        String randomLastName = lastNames[randomIndexLastName];
 
         int randomNumberForEmail=rand.nextInt(7000);
         String email =randomFirstName+randomLastName+randomNumberForEmail+"@gmail.com";
