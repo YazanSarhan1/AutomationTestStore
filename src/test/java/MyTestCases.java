@@ -58,17 +58,17 @@ public class MyTestCases {
         int randomNumberForEmail=rand.nextInt(7000);
         String email =randomFirstName+randomLastName+randomNumberForEmail+"@gmail.com";
 
-        String telephone = "9624545455";
-        String fax = "9624545755";
-        String company = "abc";
+        String telephone = "0962777555000";
+        String fax = "962778";
+        String company = "ABC";
         String address1 = "Amman Airport St";
         String address2 = "Amman Waves";
         String city = "Amman";
         String PostalCode = "1168";
         String password = "Yzn@1234";
         //Action
-        firstNameInput.sendKeys(firstNames);
-        lastNameInput.sendKeys(lastNames);
+        firstNameInput.sendKeys(randomFirstName);
+        lastNameInput.sendKeys(randomLastName);
         emailInput.sendKeys(email);
         telephoneInput.sendKeys(telephone);
         faxInput.sendKeys(fax);
