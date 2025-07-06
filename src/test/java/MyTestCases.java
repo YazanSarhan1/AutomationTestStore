@@ -5,10 +5,15 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
+import java.util.Random;
+
 public class MyTestCases {
     WebDriver driver = new ChromeDriver();
     String theURL = "https://automationteststore.com/";
     String SignupPage = "https://automationteststore.com/index.php?rt=account/create";
+
+    Random rand = new Random();
+
 
     @BeforeTest
     public void mySetup() {
@@ -25,29 +30,56 @@ public class MyTestCases {
         driver.navigate().to(SignupPage);
 
         //Elements
-        WebElement firstName = driver.findElement(By.xpath("//*[@id=\"AccountFrm_firstname\"]"));
-        firstName.sendKeys("Yazan");
-        WebElement lastName= driver.findElement(By.id("AccountFrm_lastname"));
-        lastName.sendKeys("Sarhan");
-        WebElement email= driver.findElement(By.xpath("//input[@id='AccountFrm_email']"));
-        email.sendKeys("yazan@yahoo.com");
-        WebElement telephone= driver.findElement(By.xpath("//input[@id='AccountFrm_telephone']"));
-        telephone.sendKeys("00962788997711");
-        WebElement fax= driver.findElement(By.xpath("//input[@id='AccountFrm_fax']"));
-        fax.sendKeys("0011");
-        WebElement company= driver.findElement(By.xpath("//input[@id='AccountFrm_company']"));
-        company.sendKeys("ABC");
-        WebElement address1= driver.findElement(By.xpath("//input[@id='AccountFrm_address_1']"));
-        address1.sendKeys("Amman");
-        WebElement address2= driver.findElement(By.xpath("//input[@id='AccountFrm_address_2']"));
-        address2.sendKeys("Airport St");
-        WebElement city= driver.findElement(By.xpath("//input[@id='AccountFrm_city']"));
-        city.sendKeys("Amman");
+        WebElement firstNameInput = driver.findElement(By.xpath("//*[@id=\"AccountFrm_firstname\"]"));
+        WebElement lastNameInput= driver.findElement(By.id("AccountFrm_lastname"));
+        WebElement emailInput= driver.findElement(By.xpath("//input[@id='AccountFrm_email']"));
+        WebElement telephoneInput= driver.findElement(By.xpath("//input[@id='AccountFrm_telephone']"));
+        WebElement faxInput= driver.findElement(By.xpath("//input[@id='AccountFrm_fax']"));
+        WebElement companyInput= driver.findElement(By.xpath("//input[@id='AccountFrm_company']"));
+        WebElement address1Input= driver.findElement(By.xpath("//input[@id='AccountFrm_address_1']"));
+        WebElement address2Input= driver.findElement(By.xpath("//input[@id='AccountFrm_address_2']"));
+        WebElement cityInput= driver.findElement(By.xpath("//input[@id='AccountFrm_city']"));
+
+        WebElement PostalCodeInput = driver.findElement(By.id("AccountFrm_postcode"));
+        WebElement loginNameInput = driver.findElement(By.id("AccountFrm_loginname"));
+        WebElement passwordInput = driver.findElement(By.id("AccountFrm_password"));
+        WebElement passwordConfirmInput = driver.findElement(By.id("AccountFrm_confirm"));
 
 
+        //Data
+        String[] firstNames={"Yazan","Mohammad","Zaid","Ahmad","Tareq"};
+        int randomIndexFirstName = rand.nextInt(firstNames.length);
+        String randomFirstName = firstNames[randomIndexFirstName];
 
+        String[] lastNames={"Sarhan","Assad","Khalil","Sultan","Hussein"};
+        int randomIndexLastName = rand.nextInt(lastNames.length);
+        String randomLastName = firstNames[randomIndexLastName];
 
+        int randomNumberForEmail=rand.nextInt(7000);
+        String email =randomFirstName+randomLastName+randomNumberForEmail+"@gmail.com";
 
+        String telephone = "9624545455";
+        String fax = "9624545755";
+        String company = "abc";
+        String address1 = "Amman Airport St";
+        String address2 = "Amman Waves";
+        String city = "Amman";
+        String PostalCode = "1168";
+        String password = "Yzn@1234";
+        //Action
+        firstNameInput.sendKeys(firstNames);
+        lastNameInput.sendKeys(lastNames);
+        emailInput.sendKeys(email);
+        telephoneInput.sendKeys(telephone);
+        faxInput.sendKeys(fax);
+        companyInput.sendKeys(company);
+        address1Input.sendKeys(address1);
+        address2Input.sendKeys(address2);
+        cityInput.sendKeys(city);
+        PostalCodeInput.sendKeys(PostalCode);
+        loginNameInput.sendKeys(randomFirstName+randomLastName+randomNumberForEmail);
+        passwordInput.sendKeys(password);
+        passwordConfirmInput.sendKeys(password);
         //Hello
     }
 }
