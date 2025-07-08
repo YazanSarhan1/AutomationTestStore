@@ -2,9 +2,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
+import java.util.List;
 import java.util.Random;
 
 public class MyTestCases {
@@ -25,7 +27,7 @@ public class MyTestCases {
 
 
     @Test(priority = 1)
-    public void Signup() {
+    public void Signup() throws InterruptedException {
 
         driver.navigate().to(SignupPage);
 
@@ -40,11 +42,15 @@ public class MyTestCases {
         WebElement address2Input= driver.findElement(By.xpath("//input[@id='AccountFrm_address_2']"));
         WebElement cityInput= driver.findElement(By.xpath("//input[@id='AccountFrm_city']"));
 
+
         WebElement PostalCodeInput = driver.findElement(By.id("AccountFrm_postcode"));
         WebElement loginNameInput = driver.findElement(By.id("AccountFrm_loginname"));
         WebElement passwordInput = driver.findElement(By.id("AccountFrm_password"));
         WebElement passwordConfirmInput = driver.findElement(By.id("AccountFrm_confirm"));
-
+        WebElement agreeBoxCheck = driver.findElement(By.id("AccountFrm_agree"));
+        WebElement continueClick = driver.findElement(By.cssSelector(".btn.btn-orange.pull-right.lock-on-click"));
+        WebElement selectCountry= driver.findElement(By.id("AccountFrm_country_id"));
+        WebElement selectState=driver.findElement(By.id("AccountFrm_zone_id"));
 
         //Data
         String[] firstNames={"Yazan","Mohammad","Zaid","Ahmad","Tareq"};
@@ -76,10 +82,26 @@ public class MyTestCases {
         address1Input.sendKeys(address1);
         address2Input.sendKeys(address2);
         cityInput.sendKeys(city);
+
+        Select selectMyCountry= new Select(selectCountry);
+        selectMyCountry.selectByVisibleText("Jordan");
+
+        Thread.sleep(2000);
+
+        //Select selectMyState= new Select(selectState);
+        int numberOfOption=selectState.findElements(By.tagName("Option")).size();
+        Select mySelectForTheState = new Select(selectState);
+        int randomStateIndex = rand.nextInt(1, numberOfOption);
+        mySelectForTheState.selectByIndex(randomStateIndex);
+
         PostalCodeInput.sendKeys(PostalCode);
         loginNameInput.sendKeys(randomFirstName+randomLastName+randomNumberForEmail);
         passwordInput.sendKeys(password);
         passwordConfirmInput.sendKeys(password);
+        agreeBoxCheck.click();
+        //Thread.sleep(2000);
+        //continueClick.click();
+
         //Hello
     }
 }
