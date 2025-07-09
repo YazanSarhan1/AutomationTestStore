@@ -15,6 +15,8 @@ public class MyTestCases {
     String SignupPage = "https://automationteststore.com/index.php?rt=account/create";
 
     Random rand = new Random();
+    String TheUserName;
+    String ThePassword = "Yzn@1234";
 
 
     @BeforeTest
@@ -71,8 +73,9 @@ public class MyTestCases {
         String address2 = "Amman Waves";
         String city = "Amman";
         String PostalCode = "1168";
-        String password = "Yzn@1234";
         //Action
+        TheUserName = randomFirstName + randomLastName + randomNumberForEmail;
+
         firstNameInput.sendKeys(randomFirstName);
         lastNameInput.sendKeys(randomLastName);
         emailInput.sendKeys(email);
@@ -84,7 +87,9 @@ public class MyTestCases {
         cityInput.sendKeys(city);
 
         Select selectMyCountry= new Select(selectCountry);
-        selectMyCountry.selectByVisibleText("Jordan");
+        int TotalCountries = selectCountry.findElements(By.tagName("option")).size();
+        int randomCountry = rand.nextInt(1, TotalCountries);
+        selectMyCountry.selectByIndex(randomCountry);
 
         Thread.sleep(2000);
 
@@ -95,13 +100,73 @@ public class MyTestCases {
         mySelectForTheState.selectByIndex(randomStateIndex);
 
         PostalCodeInput.sendKeys(PostalCode);
-        loginNameInput.sendKeys(randomFirstName+randomLastName+randomNumberForEmail);
-        passwordInput.sendKeys(password);
-        passwordConfirmInput.sendKeys(password);
+        loginNameInput.sendKeys(TheUserName);
+        passwordInput.sendKeys(ThePassword);
+        passwordConfirmInput.sendKeys(ThePassword);
         agreeBoxCheck.click();
-        //Thread.sleep(2000);
-        //continueClick.click();
+
+        continueClick.click();
+
+        Thread.sleep(2000);
 
         //Hello
+    }
+    @Test(priority = 2, enabled = true)
+    public void Logout() throws InterruptedException {
+
+        WebElement LogoutButton = driver.findElement(By.linkText("Logoff"));
+
+        LogoutButton.click();
+
+        Thread.sleep(1000);
+
+        WebElement continueButton = driver.findElement(By.linkText("Continue"));
+        continueButton.click();
+    }
+    @Test(priority = 3, enabled = true)
+    public void Login() {
+        WebElement LoginAndRegisterButton = driver.findElement(By.partialLinkText("Login or register"));
+
+        LoginAndRegisterButton.click();
+
+        WebElement Loginname = driver.findElement(By.id("loginFrm_loginname"));
+        WebElement passwordInput = driver.findElement(By.id("loginFrm_password"));
+        Loginname.sendKeys(TheUserName);
+        passwordInput.sendKeys(ThePassword);
+
+        WebElement LoginButton = driver.findElement(By.xpath("//button[@title='Login']"));
+        LoginButton.click();
+
+    }
+    @Test(priority = 4,invocationCount = 1)
+
+    public void AddtoCart() throws InterruptedException {
+        driver.navigate().to(theURL);
+
+        Thread.sleep(1000);
+        List<WebElement> theListOfItems = driver.findElements(By.className("prdocutname"));
+
+        int TotalNumberOfItems = theListOfItems.size();
+
+        System.out.println(TotalNumberOfItems);
+
+        int RandomItemIndex = rand.nextInt(2);
+
+        theListOfItems.get(RandomItemIndex).click();;
+
+        Thread.sleep(3000);
+
+        if(driver.getPageSource().contains("Out of Stock")) {
+            driver.navigate().back();
+
+            System.out.println("sorry the item out of the stock");
+        }else {
+            System.out.println(" the item is available");
+
+        }
+
+
+
+
     }
 }
